@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Dashboard - Web3 Security Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../src/utils/analytics.js"></script>
+    <script src="js/contractScanner.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.5);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+        .sidebar-link {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar-link svg {
+            margin-right: 0.75rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="py-4 px-6 border-b border-gray-800 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold">Web3 Security Pro</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="text-sm text-gray-300" id="user-email">Loading...</div>
+            <button onclick="logout()" class="btn-secondary text-sm py-1 px-3">Logout</button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex">
+        <aside class="w-64 border-r border-gray-800 p-4">
+            <nav>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#dashboard" class="sidebar-link active" data-page="dashboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#audit-tools" class="sidebar-link" data-page="audit-tools">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                            Audit Tools
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#security-reports" class="sidebar-link" data-page="security-reports">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Security Reports
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contract-scanner" class="sidebar-link" data-page="contract-scanner">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" />
+                            </svg>
+                            Contract Scanner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings" class="sidebar-link" data-page="settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="flex-1 p-6">
+            <div id="page-dashboard" class="page-content">
+                <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6">
+                        <div class="text-sm text-gray-400 mb-1">Current Plan</div>
+                        <div class="text-2xl font-bold mb-4" id="current-plan">Loading...</div>
+                        <div class="text-sm text-gray-400">Next billing date:</div>
+                        <div class="mb-4" id="next-billing-date">Loading...</div>
+                        <a href="#settings" class="text-orange-400 hover:text-orange-300 text-sm">Manage Subscription</a>
+                    </div>
+                    <div class="card p-6">
+                        <div class="text-sm text-gray-400 mb-1">Security Score</div>
+                        <div class="text-2xl font-bold mb-2">92/100</div>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                            <div class="bg-green-500 rounded-full h-2" style="width: 92%"></div>
+                        </div>
+                        <a href="#security-reports" class="text-orange-400 hover:text-orange-300 text-sm">View Report</a>
+                    </div>
+                    <div class="card p-6">
+                        <div class="text-sm text-gray-400 mb-1">Contracts Scanned</div>
+                        <div class="text-2xl font-bold mb-4">23</div>
+                        <a href="#contract-scanner" class="text-orange-400 hover:text-orange-300 text-sm">Scan New Contract</a>
+                    </div>
+                </div>
+
+                <div class="card p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-medium">Contract Scan Completed</div>
+                                <div class="text-sm text-gray-400">TokenSwap.sol - 3 vulnerabilities found</div>
+                            </div>
+                            <div class="text-sm text-gray-400">2 hours ago</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-medium">Security Report Generated</div>
+                                <div class="text-sm text-gray-400">Weekly security summary</div>
+                            </div>
+                            <div class="text-sm text-gray-400">Yesterday</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-medium">Subscription Renewed</div>
+                                <div class="text-sm text-gray-400">Pro Plan - Monthly</div>
+                            </div>
+                            <div class="text-sm text-gray-400">3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-4">Security Alerts</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 bg-yellow-500/20 p-2 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-medium">Medium Risk: Gas Optimization Needed</div>
+                                <div class="text-sm text-gray-400 mb-2">Your contract TokenSwap.sol could benefit from gas optimizations.</div>
+                                <a href="#" class="text-orange-400 hover:text-orange-300 text-sm">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-audit-tools" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-6">Audit Tools</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold mb-4">Automated Smart Contract Auditor</h3>
+                        <p class="mb-4 text-gray-300">Our AI-powered tool scans your smart contracts for vulnerabilities, security risks, and optimization opportunities.</p>
+                        <a href="#contract-scanner" class="btn-primary">Launch Tool</a>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold mb-4">Security Monitoring Dashboard</h3>
+                        <p class="mb-4 text-gray-300">Real-time monitoring of your deployed contracts for suspicious activities and potential threats.</p>
+                        <a href="#security-reports" class="btn-primary">View Dashboard</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-security-reports" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-6">Security Reports</h2>
+                <div class="card p-6 mb-6">
+                    <h3 class="text-xl font-semibold mb-4">Latest Report: May 12, 2025</h3>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span>Critical Vulnerabilities</span>
+                            <span class="font-bold text-green-400">0</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>High Risk Issues</span>
+                            <span class="font-bold text-yellow-400">2</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Medium Risk Issues</span>
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Low Risk Issues</span>
+                            <span class="font-bold">8</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-primary">Download Full Report</a>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-4">Report History</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span>May 12, 2025</span>
+                            <a href="#" class="text-orange-400 hover:text-orange-300">View</a>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>May 5, 2025</span>
+                            <a href="#" class="text-orange-400 hover:text-orange-300">View</a>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>April 28, 2025</span>
+                            <a href="#" class="text-orange-400 hover:text-orange-300">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-contract-scanner" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-6">Contract Scanner</h2>
+                <div class="card p-6">                    <h3 class="text-xl font-semibold mb-4">Scan Smart Contract</h3>
+                    <form id="contract-scan-form" class="space-y-4">
+                        <div>
+                            <label class="block mb-2">Contract Source</label>
+                            <select class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                                <option>Upload File</option>
+                                <option>Paste Code</option>
+                                <option>GitHub Repository</option>
+                                <option>Ethereum Address</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2">Contract Code</label>
+                            <textarea rows="8" class="w-full bg-gray-800 border border-gray-700 rounded p-2" placeholder="// Paste your smart contract code here..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block mb-2">Scan Options</label>                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="opt-reentrancy" class="mr-2 bg-gray-800" checked>
+                                    Reentrancy Vulnerabilities
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="opt-unchecked-calls" class="mr-2 bg-gray-800" checked>
+                                    Unchecked Function Calls
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="opt-integer-overflow" class="mr-2 bg-gray-800" checked>
+                                    Integer Overflow/Underflow
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="opt-access-control" class="mr-2 bg-gray-800" checked>
+                                    Access Control Issues
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="opt-gas-optimization" class="mr-2 bg-gray-800" checked>
+                                    Gas Optimization
+                                </label>
+                            </div>
+                        </div>                        <button type="submit" class="btn-primary">Start Scan</button>
+                    </form>
+                </div>
+                
+                <!-- Scan Results Section -->
+                <div id="scan-results" class="card p-6 mt-6 hidden">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div id="page-settings" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-6">Settings</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="card p-6 mb-6">
+                            <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block mb-2">Name</label>
+                                    <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded p-2" value="Demo User">
+                                </div>
+                                <div>
+                                    <label class="block mb-2">Email</label>
+                                    <input type="email" class="w-full bg-gray-800 border border-gray-700 rounded p-2" value="demo@web3securitypro.tech" readonly>
+                                </div>
+                                <div>
+                                    <label class="block mb-2">Company</label>
+                                    <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded p-2" value="Web3 Innovations">
+                                </div>
+                                <button type="submit" class="btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                        
+                        <div class="card p-6 mb-6">
+                            <h3 class="text-xl font-semibold mb-4">Security</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block mb-2">Change Password</label>
+                                    <input type="password" class="w-full bg-gray-800 border border-gray-700 rounded p-2 mb-2" placeholder="Current Password">
+                                    <input type="password" class="w-full bg-gray-800 border border-gray-700 rounded p-2 mb-2" placeholder="New Password">
+                                    <input type="password" class="w-full bg-gray-800 border border-gray-700 rounded p-2" placeholder="Confirm New Password">
+                                </div>
+                                <div>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2 bg-gray-800" checked>
+                                        Enable Two-Factor Authentication
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn-primary">Update Security Settings</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-1">
+                        <div class="card p-6 mb-6">
+                            <h3 class="text-xl font-semibold mb-4">Subscription</h3>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-400 mb-1">Current Plan</div>
+                                <div class="text-lg font-bold" id="settings-current-plan">Loading...</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-400 mb-1">Status</div>
+                                <div class="text-green-400 font-medium">Active</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-400 mb-1">Next Billing Date</div>
+                                <div id="settings-next-billing-date">Loading...</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-400 mb-1">Payment Method</div>
+                                <div>Visa ending in 4242</div>
+                            </div>
+                            <div class="space-y-2">
+                                <button class="btn-secondary w-full">Change Plan</button>
+                                <button class="btn-secondary w-full">Update Payment Method</button>
+                                <button class="btn-danger w-full">Cancel Subscription</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <h3 class="text-xl font-semibold mb-4">Notifications</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2 bg-gray-800" checked>
+                                    Security Alerts
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2 bg-gray-800" checked>
+                                    Report Summaries
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2 bg-gray-800" checked>
+                                    Billing Notifications
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2 bg-gray-800">
+                                    Marketing Updates
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mock authentication check
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is authenticated
+            const isAuthenticated = localStorage.getItem('w3sp_subscribed') === 'true';
+            if (!isAuthenticated) {
+                // Redirect to login in real application
+                // For demo purposes, we'll just simulate login
+                localStorage.setItem('w3sp_subscribed', 'true');
+                localStorage.setItem('w3sp_plan', 'price_pro');
+                localStorage.setItem('w3sp_email', 'demo@web3securitypro.tech');
+            }
+
+            // Display user data
+            document.getElementById('user-email').textContent = localStorage.getItem('w3sp_email') || 'demo@web3securitypro.tech';
+            
+            // Plan name mapping for display
+            const planNames = {
+                'price_basic': 'Basic Plan ($99/month)',
+                'price_pro': 'Pro Plan ($299/month)',
+                'price_enterprise': 'Enterprise Plan ($999/month)'
+            };
+            
+            // Get stored plan
+            const plan = localStorage.getItem('w3sp_plan') || 'price_pro';
+            
+            // Display plan name
+            const planName = planNames[plan];
+            document.getElementById('current-plan').textContent = planName;
+            document.getElementById('settings-current-plan').textContent = planName;
+            
+            // Calculate and display next billing date (1 month from now)
+            const nextBillingDate = new Date();
+            nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
+            
+            // Format date as Month DD, YYYY
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = nextBillingDate.toLocaleDateString('en-US', options);
+            
+            document.getElementById('next-billing-date').textContent = formattedDate;
+            document.getElementById('settings-next-billing-date').textContent = formattedDate;
+            
+            // Set up page navigation
+            const pages = document.querySelectorAll('.page-content');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active link
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show correct page
+                    const pageId = this.getAttribute('data-page');
+                    pages.forEach(page => {
+                        if (page.id === `page-${pageId}`) {
+                            page.classList.remove('hidden');
+                        } else {
+                            page.classList.add('hidden');                        }
+                    });
+                });
+            });
+        });
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('w3sp_subscribed');
+            localStorage.removeItem('w3sp_plan');
+            localStorage.removeItem('w3sp_email');
+            window.location.href = '/index.html';
+        }
+    </script>
+</body>
+</html>

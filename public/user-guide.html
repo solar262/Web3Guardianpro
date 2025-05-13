@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - Web3 Security Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.5);
+        }
+        code {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .toc-link:hover {
+            color: #feb47b;
+        }
+        .toc-link.nested {
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="py-6 px-4 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-extrabold">Web3 Security Pro</h1>
+        </div>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="hover:text-orange-300 transition">Home</a></li>
+                <li><a href="/dashboard.html" class="hover:text-orange-300 transition">Dashboard</a></li>
+                <li><a href="#" class="text-orange-300 transition">User Guide</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container mx-auto p-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Table of Contents -->
+            <aside class="md:w-1/4">
+                <div class="card p-6 sticky top-8">
+                    <h3 class="text-xl font-semibold mb-4">Contents</h3>
+                    <nav>
+                        <a href="#getting-started" class="toc-link">1. Getting Started</a>
+                        <a href="#account-management" class="toc-link">2. Account Management</a>
+                        <a href="#subscription-plans" class="toc-link">3. Subscription Plans</a>
+                        <a href="#dashboard-overview" class="toc-link">4. Dashboard Overview</a>
+                        <a href="#smart-contract-scanner" class="toc-link">5. Smart Contract Scanner</a>
+                        <a href="#security-reports" class="toc-link">6. Security Reports</a>
+                        <a href="#supported-blockchains" class="toc-link">7. Supported Blockchains</a>
+                        <a href="#vulnerability-types" class="toc-link">8. Vulnerability Types</a>
+                        <a href="#api-integration" class="toc-link">9. API Integration</a>
+                        <a href="#faq" class="toc-link">10. FAQ</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="md:w-3/4">
+                <div class="card p-8 mb-8">
+                    <h2 class="text-3xl font-bold mb-6">Web3 Security Pro User Guide</h2>
+                    <p class="mb-4">Welcome to Web3 Security Pro, your comprehensive solution for securing blockchain applications, smart contracts, and decentralized systems. This guide will help you navigate our platform and make the most of our security tools.</p>
+                    <p class="mb-4">Last Updated: May 13, 2025</p>
+                </div>
+
+                <section id="getting-started" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">1. Getting Started</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Creating Your Account</h3>
+                    <p class="mb-4">To get started with Web3 Security Pro:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Visit our <a href="/" class="text-orange-300 hover:underline">homepage</a></li>
+                        <li>Click on "Get Started" button</li>
+                        <li>Choose a subscription plan that fits your needs</li>
+                        <li>Complete the checkout process</li>
+                        <li>Set up your account credentials</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">System Requirements</h3>
+                    <p class="mb-4">Web3 Security Pro is a web-based platform accessible from any modern browser:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li>Google Chrome (version 90+)</li>
+                        <li>Mozilla Firefox (version 88+)</li>
+                        <li>Safari (version 14+)</li>
+                        <li>Microsoft Edge (version 90+)</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold mb-2">First Login</h3>
+                    <p>After creating your account, you'll be automatically directed to your dashboard. Here you can start exploring the platform and set up your profile and preferences.</p>
+                </section>
+
+                <section id="account-management" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">2. Account Management</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Profile Settings</h3>
+                    <p class="mb-4">To manage your account settings:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Navigate to the Dashboard</li>
+                        <li>Click on the "Settings" tab in the sidebar</li>
+                        <li>Update your personal information, including name, email, and company</li>
+                        <li>Click "Save Changes" to update your profile</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Security Settings</h3>
+                    <p class="mb-4">We recommend enabling two-factor authentication (2FA) for added security:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Go to the "Settings" tab</li>
+                        <li>Under "Security", check "Enable Two-Factor Authentication"</li>
+                        <li>Follow the prompts to set up 2FA using your preferred authenticator app</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Team Management</h3>
+                    <p class="mb-4">Enterprise plan subscribers can add team members:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>In Settings, navigate to "Team Management"</li>
+                        <li>Click "Add Team Member"</li>
+                        <li>Enter the team member's email and assign appropriate permissions</li>
+                        <li>An invitation will be sent to join your organization</li>
+                    </ol>
+                </section>
+
+                <section id="subscription-plans" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">3. Subscription Plans</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Available Plans</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-gray-800/50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2">Basic Plan</h4>
+                            <p class="text-2xl font-bold mb-4">$99<span class="text-sm font-normal">/month</span></p>
+                            <ul class="mb-4 space-y-1">
+                                <li>✅ Basic smart contract audit</li>
+                                <li>✅ Weekly security reports</li>
+                                <li>✅ Email support</li>
+                            </ul>
+                            <p class="text-sm text-gray-400">Best for individual developers and small projects</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-6 rounded-lg relative">
+                            <span class="absolute top-0 right-0 bg-orange-400 text-xs px-2 py-1 rounded-bl">POPULAR</span>
+                            <h4 class="text-lg font-semibold mb-2">Pro Plan</h4>
+                            <p class="text-2xl font-bold mb-4">$299<span class="text-sm font-normal">/month</span></p>
+                            <ul class="mb-4 space-y-1">
+                                <li>✅ Advanced smart contract audit</li>
+                                <li>✅ Daily security monitoring</li>
+                                <li>✅ Priority email & chat support</li>
+                                <li>✅ Security consultation (2hrs)</li>
+                            </ul>
+                            <p class="text-sm text-gray-400">Perfect for startups and medium-sized projects</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2">Enterprise Plan</h4>
+                            <p class="text-2xl font-bold mb-4">$999<span class="text-sm font-normal">/month</span></p>
+                            <ul class="mb-4 space-y-1">
+                                <li>✅ Comprehensive security suite</li>
+                                <li>✅ 24/7 monitoring & alerts</li>
+                                <li>✅ Dedicated security team</li>
+                                <li>✅ Emergency response</li>
+                                <li>✅ Custom security solutions</li>
+                            </ul>
+                            <p class="text-sm text-gray-400">Ideal for large organizations and critical applications</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-2">Managing Your Subscription</h3>
+                    <p class="mb-4">To manage your subscription:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Navigate to Settings > Subscription</li>
+                        <li>From here, you can:
+                            <ul class="list-disc pl-5 mb-2 mt-2 space-y-1">
+                                <li>Change plans</li>
+                                <li>Update payment methods</li>
+                                <li>View billing history</li>
+                                <li>Cancel subscription</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Billing FAQs</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold">When will I be billed?</h4>
+                            <p class="text-gray-300">Subscriptions are billed monthly on the date you signed up.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Can I change plans?</h4>
+                            <p class="text-gray-300">Yes, you can upgrade or downgrade your plan at any time. Upgrades take effect immediately, while downgrades take effect at the end of your billing cycle.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">How do I cancel my subscription?</h4>
+                            <p class="text-gray-300">You can cancel your subscription through the Settings > Subscription page. Access to premium features will continue until the end of your current billing period.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="dashboard-overview" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. Dashboard Overview</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Navigation</h3>
+                    <p class="mb-4">Your Web3 Security Pro dashboard consists of:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li><strong>Dashboard Home</strong> - Overview of your security status and recent activity</li>
+                        <li><strong>Audit Tools</strong> - Access to smart contract scanning tools</li>
+                        <li><strong>Security Reports</strong> - View detailed reports of security audits</li>
+                        <li><strong>Contract Scanner</strong> - Tool for analyzing smart contracts</li>
+                        <li><strong>Settings</strong> - Manage account preferences and subscription</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Dashboard Widgets</h3>
+                    <p class="mb-4">The main dashboard contains several key widgets:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li><strong>Current Plan</strong> - Your subscription details and next billing date</li>
+                        <li><strong>Security Score</strong> - Overall security rating of your contracts</li>
+                        <li><strong>Contracts Scanned</strong> - Number of contracts analyzed</li>
+                        <li><strong>Recent Activity</strong> - Latest actions and audit results</li>
+                        <li><strong>Security Alerts</strong> - Important notifications about potential vulnerabilities</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Customizing Your Dashboard</h3>
+                    <p>Pro and Enterprise users can customize their dashboard layout by clicking the "Customize" button in the top-right corner of the dashboard.</p>
+                </section>
+
+                <section id="smart-contract-scanner" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">5. Smart Contract Scanner</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Scanning Methods</h3>
+                    <p class="mb-4">You can scan smart contracts using various methods:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li><strong>File Upload</strong> - Upload Solidity (.sol) files directly</li>
+                        <li><strong>Code Paste</strong> - Paste contract code into the scanner</li>
+                        <li><strong>GitHub Repository</strong> - Connect to GitHub to scan repositories</li>
+                        <li><strong>Ethereum Address</strong> - Scan deployed contracts by address</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Performing a Scan</h3>
+                    <p class="mb-4">To scan a smart contract:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Navigate to "Contract Scanner" in the sidebar</li>
+                        <li>Select your preferred input method</li>
+                        <li>Provide the contract code or information</li>
+                        <li>Select the vulnerabilities to scan for</li>
+                        <li>Click "Start Scan"</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Understanding Results</h3>
+                    <p class="mb-4">Scan results are categorized by severity:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li><strong class="text-red-400">Critical</strong> - Severe vulnerabilities that must be addressed immediately</li>
+                        <li><strong class="text-yellow-400">High</strong> - Important issues that pose significant risk</li>
+                        <li><strong class="text-orange-300">Medium</strong> - Moderate issues that should be addressed</li>
+                        <li><strong class="text-green-400">Low</strong> - Minor issues with limited risk</li>
+                        <li><strong class="text-blue-300">Informational</strong> - Suggestions and best practices</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Sample Analysis</h3>
+                    <p class="mb-4">Example output for a scanned contract:</p>
+                    <pre><code>// Security Analysis for TokenSwap.sol
+// Overall Score: 85/100
+
+Critical Issues: 0
+High Risk Issues: 1
+- Reentrancy vulnerability at line 42
+  Recommendation: Implement checks-effects-interactions pattern
+
+Medium Risk Issues: 2
+- Unchecked external call at line 87
+  Recommendation: Verify return value of low-level calls
+- Missing event emission at line 102
+  Recommendation: Emit events for state changes
+
+Low Risk Issues: 3
+- Gas optimization opportunities
+- Consider using SafeMath
+- Update Solidity version</code></pre>
+                </section>
+
+                <section id="security-reports" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">6. Security Reports</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Types of Reports</h3>
+                    <p class="mb-4">Web3 Security Pro provides several report types:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li><strong>Single Contract Reports</strong> - Detailed analysis of individual contracts</li>
+                        <li><strong>Weekly/Daily Summaries</strong> - Regular updates on your monitored contracts</li>
+                        <li><strong>Project Reports</strong> - Comprehensive overview of entire projects</li>
+                        <li><strong>Custom Reports</strong> (Enterprise only) - Tailored reports for specific needs</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Accessing Reports</h3>
+                    <p class="mb-4">To access your security reports:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Navigate to "Security Reports" in the sidebar</li>
+                        <li>Browse the list of available reports</li>
+                        <li>Click on a report to view details</li>
+                        <li>Use the "Download" button to export as PDF</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Report Sharing</h3>
+                    <p>You can share reports with team members or clients by generating a secure link from the report page. Enterprise users can set custom permissions and expiration dates for shared reports.</p>
+                </section>
+
+                <section id="supported-blockchains" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">7. Supported Blockchains</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Main Networks</h3>
+                    <p class="mb-4">Web3 Security Pro supports analysis for contracts on these blockchains:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="text-blue-400 fill-current">
+                                    <path d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16zm7.787-17.387l-7.794-4.625-7.787 4.625 7.787 4.625 7.794-4.625zm-7.787 6.087l-7.787-4.625 7.787 4.625 7.787-4.625-7.787 4.625zm0-16.945l7.787 11.338-7.787 4.625-7.787-4.625L16 3.755z"/>
+                                </svg>
+                            </div>
+                            <span>Ethereum</span>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 text-purple-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 33" class="text-purple-400 fill-current">
+                                    <path d="M29 10.2c-.7-.4-1.6-.4-2.4 0L21 13.5l-3.8 2.1-5.5 3.3c-.7.4-1.6.4-2.4 0L5 16.3c-.7-.4-1.2-1.2-1.2-2.1v-5c0-.8.4-1.6 1.2-2.1l4.3-2.5c.7-.4 1.6-.4 2.4 0L16 7.2c.7.4 1.2 1.2 1.2 2.1v3.3l3.8-2.2V7c0-.8-.4-1.6-1.2-2.1l-8-4.7c-.7-.4-1.6-.4-2.4 0L1.2 5C.4 5.4 0 6.2 0 7v9.4c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l5.5-3.2 3.8-2.2 5.5-3.2c.7-.4 1.6-.4 2.4 0l4.3 2.5c.7.4 1.2 1.2 1.2 2.1v5c0 .8-.4 1.6-1.2 2.1L29 28.8c-.7.4-1.6.4-2.4 0l-4.3-2.5c-.7-.4-1.2-1.2-1.2-2.1V21l-3.8 2.2v3.3c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l8.1-4.7c.7-.4 1.2-1.2 1.2-2.1V17c0-.8-.4-1.6-1.2-2.1L29 10.2z"/>
+                                </svg>
+                            </div>
+                            <span>Polygon</span>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="text-yellow-400 fill-current">
+                                    <path d="M16 0c8.837 0 16 7.163 16 16s-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0zm-.171 7h-.002a.83.83 0 00-.646.327L11.25 12.5l3.5.5-2.5 3.5 3.25.5-2.75 4.5 8.5-5.5-3.75-.5 2.75-3.5-4.421-.316 1.204-1.444a.83.83 0 00.243-.59v-.323A.83.83 0 0016.587 9h-.408a.83.83 0 00-.35.078V7z"/>
+                                </svg>
+                            </div>
+                            <span>Binance Smart Chain</span>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="text-red-400 fill-current">
+                                    <path d="M12 0L4.37 12 12 16.5l7.63-4.5L12 0zm0 24l7.63-4.5L12 15l-7.63 4.5L12 24z"/>
+                                </svg>
+                            </div>
+                            <span>Avalanche</span>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="text-blue-300 fill-current">
+                                    <path d="M12 2L5 12l7 3 7-3-7-10zm0 5l-4 6 4 2 4-2-4-6zm0 17l7-4-7-3-7 3 7 4z"/>
+                                </svg>
+                            </div>
+                            <span>Arbitrum</span>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="text-pink-400 fill-current">
+                                    <path d="M12 0L4 8l8 8 8-8-8-8zm0 16l-8 8 8-4 8 4-8-8z"/>
+                                </svg>
+                            </div>
+                            <span>Optimism</span>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-2">Test Networks</h3>
+                    <p class="mb-4">We also support test networks for development:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li>Ethereum Goerli, Sepolia</li>
+                        <li>Polygon Mumbai</li>
+                        <li>BSC Testnet</li>
+                        <li>Avalanche Fuji</li>
+                        <li>Arbitrum Goerli</li>
+                        <li>Optimism Goerli</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-2">Adding Custom Networks</h3>
+                    <p>Enterprise customers can request support for additional networks by contacting our support team.</p>
+                </section>
+
+                <section id="vulnerability-types" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">8. Vulnerability Types</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Common Vulnerabilities</h3>
+                    <p class="mb-4">Web3 Security Pro detects the following vulnerability types:</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <h4 class="font-semibold">Reentrancy Attacks</h4>
+                            <p class="text-gray-300">Detects when contracts fail to update state before transferring control to external contracts.</p>
+                            <pre><code>// Vulnerable Example
+function withdraw(uint amount) public {
+    require(balances[msg.sender] >= amount);
+    // Vulnerable: External call before state update
+    (bool success, ) = msg.sender.call{value: amount}("");
+    require(success);
+    balances[msg.sender] -= amount;
+}
+
+// Fixed Example
+function withdraw(uint amount) public {
+    require(balances[msg.sender] >= amount);
+    // Fixed: State updated before external call
+    balances[msg.sender] -= amount;
+    (bool success, ) = msg.sender.call{value: amount}("");
+    require(success);
+}</code></pre>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Integer Overflow/Underflow</h4>
+                            <p class="text-gray-300">Identifies arithmetic operations that could overflow or underflow without proper checks.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Access Control Issues</h4>
+                            <p class="text-gray-300">Detects missing or improper authorization checks in sensitive functions.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Unchecked External Calls</h4>
+                            <p class="text-gray-300">Finds external calls without proper return value checking.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Front-Running Vulnerabilities</h4>
+                            <p class="text-gray-300">Identifies functions susceptible to front-running attacks.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">DOS Vulnerabilities</h4>
+                            <p class="text-gray-300">Detects patterns that could lead to denial-of-service conditions.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Gas Optimization Issues</h4>
+                            <p class="text-gray-300">Suggests improvements to reduce gas consumption.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-2">Advanced Detection</h3>
+                    <p>Enterprise plan users receive additional advanced vulnerability detection capabilities, including custom vulnerability patterns and project-specific rule sets.</p>
+                </section>
+
+                <section id="api-integration" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">9. API Integration</h2>
+                    
+                    <h3 class="text-xl font-semibold mb-2">API Overview</h3>
+                    <p class="mb-4">Pro and Enterprise users can integrate Web3 Security Pro into their development workflow using our API:</p>
+                    
+                    <h3 class="text-xl font-semibold mb-2">Authentication</h3>
+                    <p class="mb-4">To authenticate API requests, you'll need to generate an API key:</p>
+                    <ol class="list-decimal pl-5 mb-6 space-y-2">
+                        <li>Navigate to Settings > API Access</li>
+                        <li>Click "Generate API Key"</li>
+                        <li>Store this key securely</li>
+                        <li>Include the key in all API requests as a header: <code>X-API-KEY: your_api_key</code></li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold mb-2">Sample API Request</h3>
+                    <pre><code>// Request to scan a smart contract
+POST https://api.web3securitypro.tech/v1/scan
+Headers:
+  X-API-KEY: your_api_key
+  Content-Type: application/json
+
+Body:
+{
+  "source": "contract Token { ... }", 
+  "filename": "Token.sol",
+  "scanType": "comprehensive",
+  "network": "ethereum"
+}</code></pre>
+
+                    <h3 class="text-xl font-semibold mb-2">Continuous Integration</h3>
+                    <p class="mb-4">Enterprise users can integrate Web3 Security Pro into CI/CD pipelines:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li>GitHub Actions integration</li>
+                        <li>GitLab CI/CD pipeline support</li>
+                        <li>Jenkins plugin</li>
+                        <li>CLI tool for automated scanning</li>
+                    </ul>
+
+                    <p>For complete API documentation, visit the <a href="#" class="text-orange-300 hover:underline">API Reference</a> page.</p>
+                </section>
+
+                <section id="faq" class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">10. Frequently Asked Questions</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold">How accurate are the scan results?</h3>
+                            <p>Our security scanner achieves over 95% accuracy in detecting common vulnerabilities. However, we recommend manual review of critical contracts in addition to automated scanning for comprehensive security.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Is my code kept confidential?</h3>
+                            <p>Yes, all code submitted to Web3 Security Pro is encrypted in transit and at rest. We do not share your code with third parties. Enterprise customers can request on-premises deployment for additional security.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Can I scan contracts written in languages other than Solidity?</h3>
+                            <p>Currently, we support Solidity, Vyper, and Move programming languages. Support for additional languages is under development.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">How often are security rules updated?</h3>
+                            <p>Our security rules database is updated weekly to include the latest vulnerabilities and attack vectors discovered in the Web3 space.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Do you offer professional audit services?</h3>
+                            <p>Yes, Enterprise plan customers can request professional audit services performed by our security experts. Contact our sales team for more information.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">What if I need help with my scan results?</h3>
+                            <p>Pro and Enterprise customers can schedule consultations with our security experts to review scan results and get personalized recommendations.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card p-8 mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Need More Help?</h2>
+                    <p class="mb-4">If you have additional questions or need assistance, please contact our support team:</p>
+                    <ul class="list-disc pl-5 mb-6 space-y-2">
+                        <li>Email: <a href="mailto:support@web3securitypro.tech" class="text-orange-300 hover:underline">support@web3securitypro.tech</a></li>
+                        <li>Live Chat: Available in your dashboard (Pro and Enterprise plans)</li>
+                        <li>Knowledge Base: <a href="#" class="text-orange-300 hover:underline">help.web3securitypro.tech</a></li>
+                    </ul>
+                    <p>Our support hours are Monday-Friday, 9 AM - 5 PM EST. Enterprise customers receive 24/7 priority support.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="py-8 text-center border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <p class="text-sm text-gray-400">© 2025 Web3 Security Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

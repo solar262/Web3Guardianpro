@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Web3 Security Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.5);
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            animation: confetti 5s ease-in-out infinite;
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="py-6 px-4 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-extrabold">Web3 Security Pro</h1>
+        </div>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="hover:text-orange-300 transition">Home</a></li>
+                <li><a href="/#features" class="hover:text-orange-300 transition">Features</a></li>
+                <li><a href="/#contact" class="hover:text-orange-300 transition">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-1 container mx-auto p-8 flex items-center justify-center">
+        <div class="card p-8 max-w-2xl w-full text-center">
+            <div class="text-6xl mb-6">🎉</div>
+            <h2 class="text-3xl font-bold mb-4">Payment Successful!</h2>
+            <p class="text-xl mb-6">Thank you for subscribing to Web3 Security Pro!</p>
+            <div class="bg-green-900/30 p-4 rounded-lg mb-8">
+                <h3 class="font-semibold mb-2">Your subscription details:</h3>
+                <div id="subscription-details">
+                    <p class="mb-2">Loading subscription details...</p>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <a href="/dashboard.html" class="btn-primary">Go to Dashboard</a>
+                <p class="text-sm text-gray-400">We've also sent a confirmation email with your receipt.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 text-center border-t border-gray-800">
+        <p class="text-sm text-gray-400">© 2025 Web3 Security Pro. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff7e5f', '#feb47b', '#ffffff', '#4ade80', '#60a5fa'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 7000);
+            }
+        }
+
+        // Parse query parameters
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split('&');
+            
+            for (let i = 0; i < pairs.length; i++) {
+                const pair = pairs[i].split('=');
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+            }
+            return params;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+            
+            // Get session ID from URL if available
+            const params = getQueryParams();
+            const sessionId = params.session_id || 'demo_session';
+            
+            // In a real application, you would verify the session with your server
+            // For demo purposes, we'll show mock data
+            const subscriptionDetails = document.getElementById('subscription-details');
+            
+            // Mock subscription details (in production, fetch from server)
+            const planNames = {
+                'price_basic': 'Basic Plan',
+                'price_pro': 'Pro Plan',
+                'price_enterprise': 'Enterprise Plan'
+            };
+            
+            // Choose a random plan for demo purposes
+            const plans = Object.keys(planNames);
+            const plan = plans[Math.floor(Math.random() * plans.length)];
+            
+            // Calculate next billing date (1 month from now)
+            const nextBillingDate = new Date();
+            nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
+            
+            // Format date as YYYY-MM-DD
+            const formattedDate = nextBillingDate.toISOString().split('T')[0];
+            
+            subscriptionDetails.innerHTML = `
+                <p class="mb-1"><strong>Plan:</strong> ${planNames[plan]}</p>
+                <p class="mb-1"><strong>Status:</strong> <span class="text-green-400">Active</span></p>
+                <p class="mb-1"><strong>Next billing date:</strong> ${formattedDate}</p>
+                <p class="text-sm text-gray-400 mt-2">Your subscription will renew automatically.</p>
+            `;
+            
+            // In production, you would also update your authentication state to reflect the user is now subscribed
+            localStorage.setItem('w3sp_subscribed', 'true');
+            localStorage.setItem('w3sp_plan', plan);
+        });
+    </script>
+</body>
+</html>
