@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="robots" content="noindex,nofollow"><title>Web3 Auditor Pack Access | HunterVault</title><script src="https://cdn.tailwindcss.com"></script><style>body{background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);color:white;font-family:Inter,system-ui,sans-serif}.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:18px}</style></head><body><main class="max-w-5xl mx-auto p-6 md:p-10"><a href="./" class="text-orange-200">← Back to HunterVault</a><section class="card p-6 md:p-10 mt-6"><p class="text-orange-200 font-bold mb-2">Paid customer access page</p><h1 class="text-4xl md:text-5xl font-black mb-4">Web3 Auditor Pack</h1><p class="text-xl text-gray-200 mb-6">Thank you for purchasing the Web3 Auditor Pack. This page is for paid customers only. Please do not share this access link. Support may request your Stripe receipt email.</p><div class="bg-black/30 p-4 rounded-xl mb-8"><strong>Delivery status:</strong> Your Web3 templates and audit workflow assets are delivered below. Bookmark this page.</div><h2 class="text-2xl font-bold mb-3">1. Smart Contract Audit Checklist</h2><ul class="list-disc pl-6 text-gray-200 mb-6"><li>Access control: owner-only, roles, multisig assumptions</li><li>Reentrancy: external calls before state updates</li><li>Unchecked calls and unsafe low-level calls</li><li>Oracle assumptions and stale price checks</li><li>Signature replay and nonce validation</li><li>Upgradeability and initializer risks</li><li>Slippage, MEV, frontrunning, and business logic</li><li>Emergency pause and admin recovery paths</li></ul><h2 class="text-2xl font-bold mb-3">2. Web3 Finding Report Template</h2><pre class="bg-gray-950 p-4 rounded-xl whitespace-pre-wrap text-sm mb-6">Title:
+Severity:
+Affected contract:
+Affected function:
+Vulnerability class:
+Summary:
+Technical details:
+Proof of concept:
+Impact:
+Likelihood:
+Recommended fix:
+References:
+Retest status:</pre><h2 class="text-2xl font-bold mb-3">3. Reentrancy Finding Template</h2><pre class="bg-gray-950 p-4 rounded-xl whitespace-pre-wrap text-sm mb-6">Title: Reentrancy risk in [function]
+Severity: High
+Summary: The function performs an external call before updating internal accounting/state.
+Impact: An attacker-controlled contract may re-enter the function and withdraw or manipulate state before balances are updated.
+PoC outline:
+1. Deploy attacker contract.
+2. Trigger vulnerable function.
+3. Re-enter through receive/fallback.
+Remediation: Apply checks-effects-interactions, update state before external calls, and use ReentrancyGuard where appropriate.</pre><h2 class="text-2xl font-bold mb-3">4. Access Control Finding Template</h2><pre class="bg-gray-950 p-4 rounded-xl whitespace-pre-wrap text-sm mb-6">Title: Missing access control on privileged function
+Severity: Critical/High
+Summary: A sensitive function can be called by unauthorized users.
+Impact: Unauthorized users may change configuration, withdraw funds, mint tokens, pause contracts, or modify critical state.
+Remediation: Add onlyOwner, role-based checks, multisig governance, or explicit authorization controls.</pre><p class="text-gray-300">Need help or want another vulnerability class added? Use the contact form on the main site and include your Stripe receipt email.</p></section></main></body></html>
